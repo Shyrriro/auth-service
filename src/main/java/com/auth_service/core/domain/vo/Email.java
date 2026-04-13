@@ -14,7 +14,7 @@ public class Email {
 
     public Email(String value) {
         validate(value);
-        this.value = value.toLowerCase(); // normaliza
+        this.value = value.toLowerCase();
     }
 
     private void validate(String value) {
