@@ -12,8 +12,9 @@ public class Password {
 
     private String value;
 
-    protected Password() {
-        // Construtor protegido para JPA
+    public Password(String value) {
+        validate(value);
+        this.value = value;
     }
 
     private void validate(String value) {
