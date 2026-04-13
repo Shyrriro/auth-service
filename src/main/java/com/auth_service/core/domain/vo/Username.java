@@ -13,6 +13,11 @@ public class Username {
     private final String value;
 
     public Username(String value) {
+        validate(value);
+        this.value = value;
+    }
+
+    private void validate(String value) {
         if (value == null || value.isBlank()) {
             throw new IllegalArgumentException("Campo de usuário não pode ser em branco");
         }
@@ -21,7 +26,6 @@ public class Username {
                     "Nome de usuário deve conter no mínimo 3 letras e o máximo de 20 letras, sem espaço, não pode iniciar ou terminar com '.' or '_', e sem símbolos consecutivos"
             );
         }
-        this.value = value;
     }
 
     public String getValue() {
