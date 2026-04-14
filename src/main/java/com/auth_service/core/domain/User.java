@@ -20,7 +20,7 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.role = Role.valueOf(role.name());
     }
 
     public UUID getId() {
@@ -41,5 +41,37 @@ public class User {
 
     public Role getRole() {
         return role;
+    }
+
+    public User updateUsername(Username newUsername) {
+
+        return new User(
+                this.id,
+                new Username(newUsername.getValue()),
+                this.email,
+                this.password,
+                this.role
+        );
+    }
+    public User updateEmail(Email newEmail) {
+
+        return new User(
+                this.id,
+                this.username,
+                new Email(newEmail.getValue()),
+                this.password,
+                this.role
+        );
+    }
+
+    public User changePassword(Password newPassword) {
+
+        return new User(
+                this.id,
+                this.username,
+                this.email,
+                new Password(newPassword.getValue()),
+                this.role
+        );
     }
 }
