@@ -1,9 +1,6 @@
-package com.auth_service.adapters.out.persistence.Entity;
+package com.auth_service.adapters.out.persistence.entity;
 
-import com.auth_service.core.domain.enums.Role;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,10 +25,11 @@ public class UserEntity {
     @Column(unique = true, nullable = false, length = 20)
     private String username;
 
-    @Size(max = 100, message = "Email muito longo")
-    @Column(unique = true, nullable = false, length = 100)
+    @Size(min = 6, max = 254, message = "Email muito longo")
+    @Column(unique = true, nullable = false, length = 254)
     private String email;
 
+    @Size(min = 8, max = 255, message = "Senha muito longa")
     @Column(nullable = false)
     private String password;
 
