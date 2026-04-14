@@ -25,6 +25,30 @@ public class Email {
         if (!PATTERN.matcher(value).matches()) {
             throw new IllegalArgumentException("Email inválido.");
         }
+
+        if (value.length() < 6 || value.length() > 254) {
+            throw new IllegalArgumentException("O email deve ter entre 6 e 254 caracteres.");
+        }
+
+        if (value.indexOf('@') > 64) {
+            throw new IllegalArgumentException("A parte local do email deve ter no máximo 64 caracteres.");
+        }
+
+        if (value.contains("..")) {
+            throw new IllegalArgumentException("O email não pode conter pontos consecutivos.");
+        }
+
+        if (value.startsWith(".") || value.endsWith(".")) {
+            throw new IllegalArgumentException("O email não pode começar ou terminar com um ponto.");
+        }
+
+        if (value.contains(" ")) {
+            throw new IllegalArgumentException("O email não pode conter espaços.");
+        }
+
+        if (value.chars().filter(ch -> ch == '@').count() != 1) {
+            throw new IllegalArgumentException("O email deve conter exatamente um caractere '@'.");
+        }
     }
 
     public String getValue() {
