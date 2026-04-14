@@ -14,7 +14,7 @@ public class Username {
 
     public Username(String value) {
         validate(value);
-        this.value = value;
+        this.value = value.toLowerCase();
     }
 
     private void validate(String value) {
@@ -25,6 +25,10 @@ public class Username {
             throw new IllegalArgumentException(
                     "Nome de usuário deve conter no mínimo 3 letras e o máximo de 20 letras, sem espaço, não pode iniciar ou terminar com '.' or '_', e sem símbolos consecutivos"
             );
+        }
+
+        if (value.contains(" ")) {
+            throw new IllegalArgumentException("Nome de usuário não pode conter espaços");
         }
     }
 
