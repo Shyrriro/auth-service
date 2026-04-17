@@ -20,6 +20,12 @@ Este projeto foi construído por mim com o objetivo de aplicar conceitos avança
 
 ---
 
+# 📬 Contato
+* GitHub: (https://github.com/Shyrriro)
+* LinkedIn: (https://www.linkedin.com/in/alexandreamorimdejesus/)
+
+---
+
 ## 📌 Visão Geral
 
 Este projeto implementa um serviço de autenticação com gerenciamento de usuários, seguindo boas práticas de arquitetura para garantir:
@@ -200,6 +206,7 @@ Responsável por criar um usuário admin automaticamente ao iniciar a aplicaçã
 * Swagger / OpenAPI (para documentação)
 * H2 Database (para desenvolvimento)
 * Maven (gerenciamento de dependências)
+* Docker (para provisionar PostgreSQL)
 * Lombok (para reduzir boilerplate)
 
 ---
@@ -235,3 +242,95 @@ http://localhost:8080/swagger-ui.html
 # Acessar H2 Console
 http://localhost:8080/h2-console
 ```
+
+---
+
+# 🐳 Auth Service - PostgreSQL (Docker)
+
+Este projeto utiliza **Docker** para provisionar um banco de dados PostgreSQL de forma rápida e consistente para o serviço de autenticação.
+
+---
+
+#### 📦 Tecnologias utilizados:
+
+* Docker
+* Docker Compose
+* PostgreSQL 16 (Alpine)
+
+---
+
+## 💡 Observações
+
+* A imagem `postgres:16-alpine` é **leve e rápida**, ideal para desenvolvimento.
+* A porta foi mapeada para `8000` para evitar conflito com PostgreSQL local.
+* Em produção, evite usar credenciais simples como `postgres/admin`.
+
+---
+
+## 🚀 Como executar
+
+### 1. Pré-requisitos
+
+* Docker instalado
+* Docker Compose instalado
+
+---
+
+### 2. Subir o container
+
+No diretório onde está o `docker-compose.yml`, execute:
+
+```bash
+docker-compose up -d
+```
+
+---
+
+#### 3. Verificar se está rodando
+
+```bash
+docker ps
+```
+
+Você deverá ver o container:
+
+```
+auth-service-postgres
+```
+
+---
+
+#### ⚙️ Configuração do Banco
+
+| Propriedade | Valor           |
+| ----------- | --------------- |
+| Host        | localhost       |
+| Porta       | 8000            |
+| Database    | auth_service_db |
+| Usuário     | postgres        |
+| Senha       | admin           |
+
+---
+
+#### 🛑 Parar o container
+
+```bash
+docker-compose down
+```
+
+---
+
+#### ♻️ Resetar o banco (apagar dados)
+
+```bash
+docker-compose down -v
+```
+
+---
+
+## 📌 Dica
+
+Se quiser acessar o banco via cliente (DBeaver, PgAdmin, etc):
+
+* Host: `localhost`
+* Porta: `8000`
