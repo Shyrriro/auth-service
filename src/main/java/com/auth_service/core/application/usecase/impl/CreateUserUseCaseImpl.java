@@ -10,14 +10,14 @@ import com.auth_service.core.domain.ports.out.UserRepository;
 import com.auth_service.core.domain.vo.Email;
 import com.auth_service.core.domain.vo.Password;
 import com.auth_service.core.domain.vo.Username;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class CreateUserUseCaseImpl implements CreateUserUseCase {
 
     private final UserRepository userRepository;
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
-    public CreateUserUseCaseImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    public CreateUserUseCaseImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }

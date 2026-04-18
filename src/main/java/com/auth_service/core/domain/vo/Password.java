@@ -1,6 +1,6 @@
 package com.auth_service.core.domain.vo;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -17,7 +17,7 @@ public class Password {
         this.value = hash;
     }
 
-    public static Password create(String rawPassword, BCryptPasswordEncoder encoder) {
+    public static Password create(String rawPassword, PasswordEncoder encoder) {
         validate(rawPassword);
         String hash = encoder.encode(rawPassword);
         return new Password(hash);
@@ -27,7 +27,7 @@ public class Password {
         return new Password(hash);
     }
 
-    public boolean matches(String rawPassword, BCryptPasswordEncoder encoder) {
+    public boolean matches(String rawPassword, PasswordEncoder encoder) {
         return encoder.matches(rawPassword, this.value);
     }
 

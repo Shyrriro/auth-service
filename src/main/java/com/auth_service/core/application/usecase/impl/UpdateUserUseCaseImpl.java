@@ -9,14 +9,14 @@ import com.auth_service.core.domain.vo.Email;
 import com.auth_service.core.domain.vo.Password;
 import com.auth_service.core.domain.vo.Username;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder encoder;
+    private final PasswordEncoder encoder;
 
-    public UpdateUserUseCaseImpl(UserRepository userRepository, BCryptPasswordEncoder encoder) {
+    public UpdateUserUseCaseImpl(UserRepository userRepository, PasswordEncoder encoder) {
         this.userRepository = userRepository;
         this.encoder = encoder;
     }

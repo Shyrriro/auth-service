@@ -7,13 +7,13 @@ import com.auth_service.core.application.usecase.impl.UpdateUserUseCaseImpl;
 import com.auth_service.core.domain.ports.out.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class UseCaseConfig {
 
     @Bean
-    CreateUserUseCaseImpl createUserUseCase(UserRepository repository, BCryptPasswordEncoder passwordEncoder) {
+    CreateUserUseCaseImpl createUserUseCase(UserRepository repository, PasswordEncoder passwordEncoder) {
         return new CreateUserUseCaseImpl(repository, passwordEncoder);
     }
 
@@ -23,7 +23,7 @@ public class UseCaseConfig {
     }
 
     @Bean
-    UpdateUserUseCaseImpl updateUserUseCase(UserRepository repository, BCryptPasswordEncoder passwordEncoder) {
+    UpdateUserUseCaseImpl updateUserUseCase(UserRepository repository, PasswordEncoder passwordEncoder) {
         return new UpdateUserUseCaseImpl(repository, passwordEncoder);
     }
 
