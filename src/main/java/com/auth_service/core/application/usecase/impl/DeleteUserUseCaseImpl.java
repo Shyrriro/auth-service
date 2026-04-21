@@ -25,9 +25,9 @@ public class DeleteUserUseCaseImpl implements DeleteUserUseCase {
 
         return new ResponseDTO(
                 200,
-                "Usuário "+username+", deletado com sucesso!",
+                "Ok",
                 LocalDateTime.now(),
-                null
+                "Usuário "+username+", deletado com sucesso!"
         );
     }
 }
