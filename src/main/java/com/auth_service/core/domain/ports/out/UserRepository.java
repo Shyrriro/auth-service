@@ -1,7 +1,6 @@
 package com.auth_service.core.domain.ports.out;
 
 import com.auth_service.core.domain.User;
-import com.auth_service.core.domain.vo.Email;
 
 import java.util.Optional;
 import java.util.UUID;
