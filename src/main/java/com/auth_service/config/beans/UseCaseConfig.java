@@ -4,17 +4,17 @@ import com.auth_service.core.application.usecase.impl.CreateUserUseCaseImpl;
 import com.auth_service.core.application.usecase.impl.DeleteUserUseCaseImpl;
 import com.auth_service.core.application.usecase.impl.GetUserByUsernameUseCaseImpl;
 import com.auth_service.core.application.usecase.impl.UpdateUserUseCaseImpl;
+import com.auth_service.core.domain.ports.out.PasswordHasher;
 import com.auth_service.core.domain.ports.out.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class UseCaseConfig {
 
     @Bean
-    CreateUserUseCaseImpl createUserUseCase(UserRepository repository, PasswordEncoder passwordEncoder) {
-        return new CreateUserUseCaseImpl(repository, passwordEncoder);
+    CreateUserUseCaseImpl createUserUseCase(UserRepository repository, PasswordHasher passwordHasher) {
+        return new CreateUserUseCaseImpl(repository, passwordHasher);
     }
 
     @Bean
@@ -23,8 +23,8 @@ public class UseCaseConfig {
     }
 
     @Bean
-    UpdateUserUseCaseImpl updateUserUseCase(UserRepository repository, PasswordEncoder passwordEncoder) {
-        return new UpdateUserUseCaseImpl(repository, passwordEncoder);
+    UpdateUserUseCaseImpl updateUserUseCase(UserRepository repository, PasswordHasher passwordHasher) {
+        return new UpdateUserUseCaseImpl(repository, passwordHasher);
     }
 
     @Bean
