@@ -214,7 +214,6 @@ Responsável por criar um usuário admin automaticamente ao iniciar a aplicaçã
 ## ⚡ Possíveis Melhorias
 
 * Adicionar testes unitários (JUnit + Mockito)
-* Implementar autenticação JWT
 * Criar logs estruturados
 * Adicionar paginação nas buscas
 * Implementar refresh tokens para autenticação
