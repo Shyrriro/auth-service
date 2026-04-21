@@ -14,5 +14,7 @@ public record UserRequestDTO(
         String email,
         @Size(min = 8, message = "A senha deve ter pelo menos 8 caracteres.")
         @NotBlank(message = "Password é obrigatório")
-        String password) {
+        String password,
+        @NotBlank(message = "Campo brigatório")
+        String passwordConfirm) {
 }
