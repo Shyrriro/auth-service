@@ -87,9 +87,9 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponseDTO(
                         400,
                         "Bad Request",
-                        ex.getMessage(),
+                        "Argumento ilegal",
                         LocalDateTime.now(),
-                        null
+                        ex.getMessage()
                 ));
     }
 
@@ -99,9 +99,9 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponseDTO(
                         HttpStatus.NOT_FOUND.value(),
                         "Not Found",
-                        ex.getMessage(),
+                        "Não encontrado",
                         LocalDateTime.now(),
-                        null
+                        ex.getMessage()
                 ));
     }
 
@@ -114,7 +114,7 @@ public class GlobalExceptionHandler {
                         "Forbidden",
                         "Acesso negado",
                         LocalDateTime.now(),
-                        null
+                        ex.getMessage()
                 )
         );
     }
@@ -128,7 +128,7 @@ public class GlobalExceptionHandler {
                         "Unauthorized",
                         "Não autenticado",
                         LocalDateTime.now(),
-                        null
+                        ex.getMessage()
                 )
         );
     }
@@ -142,7 +142,7 @@ public class GlobalExceptionHandler {
                         "Bad Request",
                         "JSON inválido ou mal formatado",
                         LocalDateTime.now(),
-                        null
+                        ex.getMessage()
                 )
         );
     }
@@ -154,9 +154,9 @@ public class GlobalExceptionHandler {
                 new ErrorResponseDTO(
                         405,
                         "Method Not Allowed",
-                        ex.getMessage(),
+                        "Método HTTP não permitido",
                         LocalDateTime.now(),
-                        null
+                        ex.getMessage()
                 )
         );
     }
