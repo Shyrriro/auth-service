@@ -1,6 +1,6 @@
 package com.auth_service.core.domain.vo;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.auth_service.core.domain.ports.out.PasswordHasher;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -13,22 +13,14 @@ public class Password {
 
     private String value;
 
-    public Password(String hash) {
-        this.value = hash;
+    public Password(String value) {
+        this.value = value;
     }
 
-    public static Password create(String rawPassword, PasswordEncoder encoder) {
+    public static Password create(String rawPassword, PasswordHasher passwordHasher) {
         validate(rawPassword);
-        String hash = encoder.encode(rawPassword);
-        return new Password(hash);
-    }
-
-    public static Password fromHash(String hash) {
-        return new Password(hash);
-    }
-
-    public boolean matches(String rawPassword, PasswordEncoder encoder) {
-        return encoder.matches(rawPassword, this.value);
+        String hashedPassword = passwordHasher.hasher(rawPassword);
+        return new Password(hashedPassword);
     }
 
     private static void validate(String value) {
