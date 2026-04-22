@@ -1,5 +1,7 @@
 package com.auth_service.core.domain.vo;
 
+import com.auth_service.config.exceptions.InvalidEmailException;
+
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -19,27 +21,27 @@ public class Email {
 
     private void validate(String value) {
         if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("Campo Email não pode ser em branco");
+            throw new InvalidEmailException("Campo Email não pode ser em branco");
         }
 
         if (!PATTERN.matcher(value).matches()) {
-            throw new IllegalArgumentException("Email inválido.");
+            throw new InvalidEmailException("Email inválido.");
         }
 
         if (value.length() < 6 || value.length() > 254) {
-            throw new IllegalArgumentException("O email deve ter entre 6 e 254 caracteres.");
+            throw new InvalidEmailException("O email deve ter entre 6 e 254 caracteres.");
         }
 
         if (value.indexOf('@') > 64) {
-            throw new IllegalArgumentException("A parte local do email deve ter no máximo 64 caracteres.");
+            throw new InvalidEmailException("A parte local do email deve ter no máximo 64 caracteres.");
         }
 
         if (value.contains("..")) {
-            throw new IllegalArgumentException("O email não pode conter pontos consecutivos.");
+            throw new InvalidEmailException("O email não pode conter pontos consecutivos.");
         }
 
         if (value.startsWith(".") || value.endsWith(".")) {
-            throw new IllegalArgumentException("O email não pode começar ou terminar com um ponto.");
+            throw new InvalidEmailException("O email não pode começar ou terminar com um ponto.");
         }
 
         if (value.contains(" ")) {
