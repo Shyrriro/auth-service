@@ -1,5 +1,6 @@
 package com.auth_service.core.domain.vo;
 
+import com.auth_service.config.exceptions.InvalidPasswordException;
 import com.auth_service.core.domain.ports.out.PasswordHasher;
 
 import java.util.Objects;
@@ -25,19 +26,19 @@ public class Password {
 
     private static void validate(String value) {
         if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("Campo Password não pode ser em branco.");
+            throw new InvalidPasswordException("Campo Password não pode ser em branco.");
         }
 
         if (!PATTERN.matcher(value).matches()) {
-            throw new IllegalArgumentException(
+            throw new InvalidPasswordException(
                     "Password deve conter pelomenos 8 caracteres, incluindo letra maiúscula, minúscula, número, e caractere especial."
             );
         }
         if (value.length() > 255) {
-            throw new IllegalArgumentException("Campo Password deve conter no máximo 255 caracteres.");
+            throw new InvalidPasswordException("Campo Password deve conter no máximo 255 caracteres.");
         }
         if (value.contains(" ")) {
-            throw new IllegalArgumentException("Campo Password não pode conter espaços.");
+            throw new InvalidPasswordException("Campo Password não pode conter espaços.");
         }
     }
 
