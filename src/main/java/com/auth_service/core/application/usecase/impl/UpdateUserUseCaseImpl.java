@@ -2,6 +2,7 @@ package com.auth_service.core.application.usecase.impl;
 
 import com.auth_service.adapters.in.web.dto.request.UserUpdateDTO;
 import com.auth_service.adapters.in.web.dto.response.UserResponseDTO;
+import com.auth_service.config.exceptions.InvalidPasswordException;
 import com.auth_service.core.application.usecase.UpdateUserUseCase;
 import com.auth_service.core.domain.User;
 import com.auth_service.core.domain.ports.out.PasswordHasher;
@@ -38,7 +39,7 @@ public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
             if(userUpdateDTO.newPassword().equals(userUpdateDTO.passwordConfirm())){
             user = user.changePassword(Password.create(userUpdateDTO.newPassword(), passwordHasher));
             } else {
-                throw new IllegalArgumentException("Senhas não coincidem.");
+                throw new InvalidPasswordException("Senhas não coincidem.");
             }
         }
 

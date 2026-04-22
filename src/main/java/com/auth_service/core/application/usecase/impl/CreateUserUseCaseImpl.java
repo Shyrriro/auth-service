@@ -2,6 +2,7 @@ package com.auth_service.core.application.usecase.impl;
 
 import com.auth_service.adapters.in.web.dto.request.UserRequestDTO;
 import com.auth_service.adapters.in.web.dto.response.UserResponseDTO;
+import com.auth_service.config.exceptions.InvalidPasswordException;
 import com.auth_service.config.exceptions.UserAlreadyExistsException;
 import com.auth_service.core.domain.User;
 import com.auth_service.core.application.usecase.CreateUserUseCase;
@@ -50,7 +51,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
                     saved.getRole().name()
             );
         } else {
-            throw new IllegalArgumentException("Senhas não coincidem");
+            throw new InvalidPasswordException("Senhas não coincidem");
         }
     }
 }
